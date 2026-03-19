@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello BrowserPod</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- Sidebar for Workshop Guidance -->
+      <aside class="workshop-sidebar">
+        <div class="sidebar-header">
+          <img src="/logo.png" alt="BrowserPod Logo" class="logo" />
+          <h2>Workshop</h2>
+        </div>
+        <ul class="steps-list">
+          <li class="step-item" id="step-1">
+            <span class="step-number">1</span>
+            <span class="step-text">Bootstrap Pod</span>
+          </li>
+          <li class="step-item" id="step-2">
+            <span class="step-number">2</span>
+            <span class="step-text">Connect Terminal</span>
+          </li>
+          <li class="step-item" id="step-3">
+            <span class="step-number">3</span>
+            <span class="step-text">Hook Portal</span>
+          </li>
+          <li class="step-item" id="step-4">
+            <span class="step-number">4</span>
+            <span class="step-text">Sync Filesystem</span>
+          </li>
+          <li class="step-item" id="step-5">
+            <span class="step-number">5</span>
+            <span class="step-text">Launch Server</span>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <a href="https://browserpod.io/docs" target="_blank" class="docs-btn">View Docs</a>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <header class="content-header">
+          <h1>BrowserPod Tetris</h1>
+          <div id="url">Waiting for portal...</div>
+        </header>
+        
+        <div class="dashboard-grid">
+          <div class="preview-card">
+            <div class="card-header">
+              <span>Preview</span>
+              <div id="qr-trigger">📱 QR Code</div>
+            </div>
+            <iframe id="portal"></iframe>
+          </div>
+          
+          <div class="terminal-card">
+            <div class="card-header">Terminal</div>
+            <pre id="console"></pre>
+          </div>
+        </div>
+
+        <!-- Overlay for QR Code -->
+        <div id="qr-overlay" class="hidden">
+          <div class="qr-content">
+            <h3>Play on Mobile</h3>
+            <div id="qr"></div>
+            <button id="close-qr">Close</button>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <!-- Demo Script to simulate progress for visual proofing -->
+    <script type="module">
+      // This is just for UI demonstration, students will implement the logic
+      window.markStepComplete = (num) => {
+        document.getElementById(`step-${num}`).classList.add('completed');
+      }
+    </script>
+  </body>
+</html>
