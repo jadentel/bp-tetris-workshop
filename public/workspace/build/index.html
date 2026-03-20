@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tetris</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <canvas id="tetris-canvas" width="240" height="400"></canvas>
-        <div id="ui-overlay">
+    <div id="game-wrapper">
+
+        <!-- Top bar: title + score -->
+        <div id="top-bar">
             <h1 id="title">TETRIS</h1>
             <div id="score-board">Score: <span id="score">0</span></div>
-            <div id="leaderboard" style="display: none;">
-                <h3>Leaderboard</h3>
-                <ul id="leaderboard-list"></ul>
-            </div>
         </div>
+
+        <!-- Canvas -->
+        <div id="canvas-container">
+            <canvas id="tetris-canvas" width="240" height="400"></canvas>
+        </div>
+
+        <!-- Leaderboard (hidden by default) -->
+        <div id="leaderboard" style="display: none;">
+            <h3>Leaderboard</h3>
+            <ul id="leaderboard-list"></ul>
+        </div>
+
+        <!-- Touch controls — always visible, full width below canvas -->
+        <div id="touch-controls">
+            <button class="ctrl-btn" id="btn-left">◀</button>
+            <button class="ctrl-btn" id="btn-down">▼</button>
+            <button class="ctrl-btn" id="btn-rotate">↻</button>
+            <button class="ctrl-btn" id="btn-right">▶</button>
+        </div>
+
     </div>
     <script src="game.js"></script>
 </body>

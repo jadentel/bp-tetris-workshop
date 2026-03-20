@@ -108,7 +108,6 @@ function drawMatrix(matrix, offset) {
 function draw() {
     context.fillStyle = '#0d0d0d';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    
     drawMatrix(arena, {x: 0, y: 0});
     drawMatrix(player.matrix, player.pos);
 }
@@ -155,7 +154,7 @@ function playerReset() {
     player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
-    
+
     if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
@@ -182,13 +181,7 @@ function playerRotate(dir) {
 function rotate(matrix, dir) {
     for (let y = 0; y < matrix.length; ++y) {
         for (let x = 0; x < y; ++x) {
-            [
-                matrix[x][y],
-                matrix[y][x],
-            ] = [
-                matrix[y][x],
-                matrix[x][y],
-            ];
+            [matrix[x][y], matrix[y][x]] = [matrix[y][x], matrix[x][y]];
         }
     }
     if (dir > 0) {
@@ -206,14 +199,14 @@ let isPaused = false;
 function update(time = 0) {
     const deltaTime = time - lastTime;
     lastTime = time;
-    
+
     if (!isPaused) {
         dropCounter += deltaTime;
         if (dropCounter > dropInterval) {
             playerDrop();
         }
     }
-    
+
     draw();
     requestAnimationFrame(update);
 }
@@ -230,7 +223,7 @@ const player = {
     score: 0,
 };
 
-// Keyboard controls
+// ── Keyboard controls ─────────────────────────────
 document.addEventListener('keydown', event => {
     switch(event.keyCode) {
         case 37: playerMove(-1); break;
@@ -242,7 +235,7 @@ document.addEventListener('keydown', event => {
     }
 });
 
-// Touch controls
+// ── Swipe controls on canvas ──────────────────────
 let touchStartX = 0;
 let touchStartY = 0;
 const SWIPE_THRESHOLD = 30;
@@ -258,66 +251,28 @@ canvas.addEventListener('touchend', e => {
     const dy = e.changedTouches[0].clientY - touchStartY;
 
     if (Math.abs(dx) < SWIPE_THRESHOLD && Math.abs(dy) < SWIPE_THRESHOLD) {
-        // Tap — rotate
         playerRotate(1);
     } else if (Math.abs(dx) > Math.abs(dy)) {
-        // Horizontal swipe
         playerMove(dx > 0 ? 1 : -1);
     } else if (dy > SWIPE_THRESHOLD) {
-        // Swipe down — drop
         playerDrop();
     }
     e.preventDefault();
 }, { passive: false });
 
-// On-screen touch buttons (injected into the page)
-function injectTouchButtons() {
-    const controls = document.createElement('div');
-    controls.id = 'touch-controls';
-    controls.style.cssText = `
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 16px;
-        user-select: none;
-    `;
+// ── Button controls (wired to existing HTML buttons) ──
+document.getElementById('btn-left').addEventListener('click', () => playerMove(-1));
+document.getElementById('btn-right').addEventListener('click', () => playerMove(1));
+document.getElementById('btn-down').addEventListener('click', () => playerDrop());
+document.getElementById('btn-rotate').addEventListener('click', () => playerRotate(1));
 
-    const btnStyle = `
-        background: #1a1a2e;
-        color: #0DFF72;
-        border: 2px solid #0DFF72;
-        border-radius: 8px;
-        padding: 14px 20px;
-        font-size: 20px;
-        cursor: pointer;
-        touch-action: manipulation;
-        min-width: 56px;
-        text-align: center;
-    `;
+// Also wire touchstart for instant mobile response
+document.getElementById('btn-left').addEventListener('touchstart', e => { playerMove(-1); e.preventDefault(); }, { passive: false });
+document.getElementById('btn-right').addEventListener('touchstart', e => { playerMove(1); e.preventDefault(); }, { passive: false });
+document.getElementById('btn-down').addEventListener('touchstart', e => { playerDrop(); e.preventDefault(); }, { passive: false });
+document.getElementById('btn-rotate').addEventListener('touchstart', e => { playerRotate(1); e.preventDefault(); }, { passive: false });
 
-    const buttons = [
-        { label: '◀', action: () => playerMove(-1) },
-        { label: '▼', action: () => playerDrop() },
-        { label: '↻', action: () => playerRotate(1) },
-        { label: '▶', action: () => playerMove(1) },
-    ];
-
-    buttons.forEach(({ label, action }) => {
-        const btn = document.createElement('button');
-        btn.textContent = label;
-        btn.style.cssText = btnStyle;
-        btn.addEventListener('touchstart', e => { action(); e.preventDefault(); }, { passive: false });
-        btn.addEventListener('click', action);
-        controls.appendChild(btn);
-    });
-
-    // Insert after the canvas container
-    const canvasParent = canvas.parentElement;
-    canvasParent.insertAdjacentElement('afterend', controls);
-}
-
-injectTouchButtons();
-
+// ── Init ──────────────────────────────────────────
 playerReset();
 updateScore();
 update();
