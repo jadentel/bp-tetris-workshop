@@ -9,110 +9,118 @@ import QRCode from 'qrcode'
 // publicly accessible via a Portal URL + QR code.
 //
 // Fill in the TODOs below using the BrowserPod docs.
-// Each step links to the exact page you need.
-// Run `npm run dev` and open http://localhost:5173 to see progress.
+// Each task links to the exact doc page you need.
+// The sidebar lights up green as you complete each step!
+// You'll know it's working when Tetris appears in the preview.
 // ============================================================
 
 
 // ----------------------------------------
-// STEP 1: Boot the Pod 🚀
+// TASK 1: Boot the Pod 🚀
 // ----------------------------------------
 // Initialize a BrowserPod instance using your API key.
 // Your key is stored in .env as VITE_BP_APIKEY.
 //
-// 📖 https://browserpod.io/docs/reference/BrowserPod/boot
+// 📖 Docs: https://browserpod.io/docs/reference/BrowserPod/boot
 //
 // TODO: Replace null with the correct BrowserPod.boot() call
 
 const pod = null // ← fix this
 
+markStepComplete(1)
+
 
 // ----------------------------------------
-// STEP 2: Set up a Terminal ⌨️
+// TASK 2: Set up a Terminal ⌨️
 // ----------------------------------------
-// Attach a terminal to the #console element so you can see
-// what's happening inside the pod in real time.
+// Attach a terminal to the #console element so you can
+// see what's happening inside the pod in real time.
 //
-// 📖 https://browserpod.io/docs/reference/BrowserPod/createDefaultTerminal
+// 📖 Docs: https://browserpod.io/docs/reference/BrowserPod/createDefaultTerminal
 //
 // TODO: Replace null with pod.createDefaultTerminal(...)
 
 const terminal = null // ← fix this
 
+markStepComplete(2)
+
 
 // ----------------------------------------
-// STEP 3: Set up the Portal 🌐
+// TASK 3: Set up the Portal 🌐
 // ----------------------------------------
 // A Portal exposes your pod's server as a public URL.
-// When a server starts inside the pod, BrowserPod fires
-// this callback with { url, port }.
+// When the server starts, BrowserPod fires this callback
+// with { url, port }.
 //
-// 📖 https://browserpod.io/docs/guides/setup-portal
-//
-// TODO: Fill in the portal handler body below
 // You need to:
 //   1. Show the URL in #url as a clickable link
 //   2. Set the #portal iframe src to the URL
-//   3. Generate a QR code (code provided below, just uncomment it)
-
-const portalIframe = document.getElementById("portal");
-const urlDiv = document.getElementById("url");
+//   3. Generate a QR code into #qr using QRCode.toCanvas()
+//
+// 📖 Docs: https://browserpod.io/docs/guides/setup-portal
+//
+// TODO: Fill in the portal handler below
 
 pod.onPortal(({ url, port }) => {
-  // TODO: Display the URL
-  // urlDiv.innerHTML = ...
+    // 1. Update the URL display
+    document.getElementById('url').innerHTML = '' // ← fix this
 
-  // TODO: Load URL in iframe
-  // portalIframe.src = ...
+    // 2. Load the URL in the iframe
+    document.getElementById('portal').src = '' // ← fix this
 
-  // QR code generation — uncomment once the above is working
-  // const qrContainer = document.getElementById("qr");
-  // qrContainer.innerHTML = "";
-  // const qrCanvas = document.createElement("canvas");
-  // qrContainer.appendChild(qrCanvas);
-  // QRCode.toCanvas(qrCanvas, url, { width: 180, margin: 1, color: { dark: '#0DFF72', light: '#0d0d0d' } });
-  // const qrLabel = document.createElement("p");
-  // qrLabel.textContent = "📱 Scan to play on your phone";
-  // qrLabel.style.cssText = "font-size: 13px; color: #888; margin: 6px 0 0 0;";
-  // qrContainer.appendChild(qrLabel);
-});
+    // 3. Generate QR code
+    const qrContainer = document.getElementById('qr')
+    qrContainer.innerHTML = ''
+    const qrCanvas = document.createElement('canvas')
+    qrContainer.appendChild(qrCanvas)
+    // TODO: call QRCode.toCanvas() here
+    // QRCode.toCanvas(qrCanvas, ???, { width: 160, margin: 1, color: { dark: '#0DFF72', light: '#0d0d0d' } })
+
+    document.getElementById('qr-label').textContent = '📱 Scan to play on your phone'
+
+    markStepComplete(3)
+})
 
 
 // ----------------------------------------
-// STEP 4: Copy files into the Pod 📂
+// TASK 4: Copy files into the Pod 📁
 // ----------------------------------------
 // The Tetris game lives in public/workspace/.
-// You need to copy those files into the pod's virtual filesystem.
+// You need to copy those files into the pod's virtual
+// filesystem so Node.js can run them.
 //
-// 📖 https://browserpod.io/docs/guides/write-files-to-pod
-// 📖 https://browserpod.io/docs/reference/BrowserPod/createDirectory
-//
-// The copyFile(pod, path) utility is already imported above.
-// Usage: await copyFile(pod, "workspace/server.js")
-//
-// Files you need to copy:
+// Files to copy:
 //   workspace/server.js
 //   workspace/build/index.html
 //   workspace/build/game.js
 //   workspace/build/style.css
 //   workspace/data/scores.json
 //
+// 📖 Docs: https://browserpod.io/docs/reference/BrowserPod/createDirectory
+// 📖 Docs: https://browserpod.io/docs/guides/write-files-to-pod
+//
+// The copyFile helper is already imported at the top.
+// Usage: await copyFile(pod, "workspace/server.js")
+//
 // TODO: Create the directories and copy the files below
 
 // await pod.createDirectory(...)
-// await copyFile(...)
+// await copyFile(pod, ...)
+
+markStepComplete(4)
 
 
 // ----------------------------------------
-// STEP 5: Run the server 🟢
+// TASK 5: Run the server 🟢
 // ----------------------------------------
-// Start the Node.js server inside the pod.
-// When it listens on port 3000, the Portal will fire automatically.
+// Now that the files are in the pod, start the Node.js server.
+// The server listens on port 3000 — that's what triggers
+// the Portal callback above.
 //
-// 📖 https://browserpod.io/docs/reference/BrowserPod/run
+// 📖 Docs: https://browserpod.io/docs/reference/BrowserPod/run
 //
-// Hint: run "node" with ["server.js"], cwd: "/workspace"
-//
-// TODO: Run the server below
+// TODO: Call pod.run() to start the server
 
 // await pod.run(...)
+
+markStepComplete(5)

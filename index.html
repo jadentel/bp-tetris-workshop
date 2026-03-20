@@ -9,7 +9,8 @@
   </head>
   <body>
     <div class="app-layout">
-      <!-- Sidebar for Workshop Guidance -->
+
+      <!-- Sidebar -->
       <aside class="workshop-sidebar">
         <div class="sidebar-header">
           <img src="/logo.png" alt="BrowserPod Logo" class="logo" />
@@ -42,42 +43,45 @@
         </div>
       </aside>
 
-      <!-- Main Content Area -->
+      <!-- Main Content -->
       <main class="main-content">
         <header class="content-header">
           <h1>BrowserPod Tetris</h1>
           <div id="url">Waiting for portal...</div>
         </header>
-        
+
         <div class="dashboard-grid">
+
+          <!-- Preview card: iframe + QR panel -->
           <div class="preview-card">
-            <div class="card-header">
-              <span>Preview</span>
-              <div id="qr-trigger">📱 QR Code</div>
+            <div class="card-header">Preview</div>
+            <div class="preview-body">
+              <iframe id="portal"></iframe>
+              <div id="qr-panel">
+                <span class="qr-heading">📱 Play on Mobile</span>
+                <div id="qr">
+                  <div class="qr-placeholder">
+                    <span>QR code will<br>appear here</span>
+                  </div>
+                </div>
+                <p id="qr-label">Waiting for portal...</p>
+                <p id="qr-url"></p>
+              </div>
             </div>
-            <iframe id="portal"></iframe>
           </div>
-          
+
+          <!-- Terminal card -->
           <div class="terminal-card">
             <div class="card-header">Terminal</div>
             <pre id="console"></pre>
           </div>
-        </div>
 
-        <!-- Overlay for QR Code -->
-        <div id="qr-overlay" class="hidden">
-          <div class="qr-content">
-            <h3>Play on Mobile</h3>
-            <div id="qr"></div>
-            <button id="close-qr">Close</button>
-          </div>
         </div>
       </main>
     </div>
+
     <script type="module" src="/src/main.js"></script>
-    <!-- Demo Script to simulate progress for visual proofing -->
     <script type="module">
-      // This is just for UI demonstration, students will implement the logic
       window.markStepComplete = (num) => {
         document.getElementById(`step-${num}`).classList.add('completed');
       }
