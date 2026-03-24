@@ -3,7 +3,7 @@ import { copyFile } from './utils'
 import QRCode from 'qrcode'
 
 // ============================================================
-// BrowserPod Tetris Workshop 🎮
+// BrowserPod Tetris Workshop
 // ============================================================
 // Your goal: get Tetris running inside your browser tab,
 // publicly accessible via a Portal URL + QR code.
@@ -16,7 +16,7 @@ import QRCode from 'qrcode'
 
 
 // ----------------------------------------
-// TASK 1: Boot the Pod 🚀
+// TASK 1: Boot the Pod
 // ----------------------------------------
 // Initialize a BrowserPod instance using your API key.
 // Your key is stored in .env as VITE_BP_APIKEY.
@@ -31,7 +31,7 @@ markStepComplete(1)
 
 
 // ----------------------------------------
-// TASK 2: Set up a Terminal ⌨️
+// TASK 2: Set up a Terminal
 // ----------------------------------------
 // Attach a terminal to the #console element so you can
 // see what's happening inside the pod in real time.
@@ -46,7 +46,7 @@ markStepComplete(2)
 
 
 // ----------------------------------------
-// TASK 3: Set up the Portal 🌐
+// TASK 3: Set up the Portal
 // ----------------------------------------
 // A Portal exposes your pod's server as a public URL.
 // When the server starts, BrowserPod fires this callback
@@ -83,7 +83,7 @@ pod.onPortal(({ url, port }) => {
 
 
 // ----------------------------------------
-// TASK 4: Copy files into the Pod 📁
+// TASK 4: Copy files into the Pod
 // ----------------------------------------
 // The Tetris game lives in public/workspace/.
 // You need to copy those files into the pod's virtual
@@ -111,7 +111,7 @@ markStepComplete(4)
 
 
 // ----------------------------------------
-// TASK 5: Run the server 🟢
+// TASK 5: Run the server
 // ----------------------------------------
 // Now that the files are in the pod, start the Node.js server.
 // The server listens on port 3000 — that's what triggers
