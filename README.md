@@ -1,10 +1,10 @@
-# BrowserPod Tetris Workshop 🕹️
+# BrowserPod Tetris Workshop
 
 Welcome to the **BrowserPod Tetris Workshop**! In this session, you'll learn how to use [BrowserPod](https://browserpod.io) to run a full Node.js backend directly in your browser's tab.
 
 No cloud provisioning, no server setup—just pure browser-based backend power.
 
-## 🎯 The Goal
+## The Goal
 Your mission is to build a development dashboard that:
 1.  **Boots** a BrowserPod instance.
 2.  **Mounts** a virtual terminal for debugging.
@@ -14,7 +14,7 @@ Your mission is to build a development dashboard that:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Project Setup
 First, make sure you have your dependencies installed and an API key ready.
@@ -45,14 +45,14 @@ Open `src/main.js`. You'll find 5 "TODO" sections. Follow the instructions and t
 
 ---
 
-## 💡 Stuck?
+## Stuck?
 If you get stuck, you can refer to `src/solution.js` for a working implementation. 
 
-## 📖 Useful Resources
+## Useful Resources
 - [BrowserPod Documentation](https://browserpod.io/docs/overview)
 - [How Portals Work](https://browserpod.io/docs/guides/portals)
 - [Filesystem API](https://browserpod.io/docs/guides/filesystem)
 
 ---
 
-Developed with ❤️ by the BrowserPod team.
+Developed by Leaning Technologies.
