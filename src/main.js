@@ -27,7 +27,7 @@ import QRCode from 'qrcode'
 
 const pod = null // ← fix this
 
-markStepComplete(1)
+//markStepComplete(1)
 
 
 // ----------------------------------------
@@ -42,7 +42,7 @@ markStepComplete(1)
 
 const terminal = null // ← fix this
 
-markStepComplete(2)
+//markStepComplete(2)
 
 
 // ----------------------------------------
@@ -61,22 +61,37 @@ markStepComplete(2)
 //
 // TODO: Fill in the portal handler below
 
+// Hook the portal to preview the web page in an iframe
+const portalIframe = document.getElementById("portal");
+const urlDiv = document.getElementById("url");
+
 pod.onPortal(({ url, port }) => {
     // 1. Update the URL display
-    document.getElementById('url').innerHTML = '' // ← fix this
+    urlDiv.innerHTML = '' // ← fix this
 
     // 2. Load the URL in the iframe
-    document.getElementById('portal').src = '' // ← fix this
+    portalIframe.src = '' // ← fix this
 
     // 3. Generate QR code
-    const qrContainer = document.getElementById('qr')
-    qrContainer.innerHTML = ''
-    const qrCanvas = document.createElement('canvas')
-    qrContainer.appendChild(qrCanvas)
-    // TODO: call QRCode.toCanvas() here
-    // QRCode.toCanvas(qrCanvas, ???, { width: 160, margin: 1, color: { dark: '#0DFF72', light: '#0d0d0d' } })
+    const qrContainer = document.getElementById("qr");
+    qrContainer.innerHTML = "";
 
-    document.getElementById('qr-label').textContent = '📱 Scan to play on your phone'
+    const qrCanvas = document.createElement("canvas");
+    qrContainer.appendChild(qrCanvas);
+    
+    // TODO: call QRCode.toCanvas() here
+    // QRCode.toCanvas(qrCanvas, ???, {
+    //   width: 160,
+    //   margin: 1,
+    //   color: { dark: '#0DFF72', light: '#0d0d0d' }
+    // });
+
+    // 4. Update the labels
+    const qrLabel = document.getElementById("qr-label");
+    if (qrLabel) qrLabel.textContent = "Scan to play on your phone";
+
+    const qrUrl = document.getElementById("qr-url");
+    if (qrUrl) qrUrl.textContent = '' // ← fix this
 
     markStepComplete(3)
 })
@@ -107,7 +122,7 @@ pod.onPortal(({ url, port }) => {
 // await pod.createDirectory(...)
 // await copyFile(pod, ...)
 
-markStepComplete(4)
+//markStepComplete(4)
 
 
 // ----------------------------------------
@@ -123,4 +138,4 @@ markStepComplete(4)
 
 // await pod.run(...)
 
-markStepComplete(5)
+//markStepComplete(5)
