@@ -54,8 +54,7 @@ const terminal = null // ← fix this
 //
 // You need to:
 //   1. Show the URL in #url as a clickable link
-//   2. Set the #portal iframe src to the URL
-//   3. Generate a QR code into #qr using QRCode.toCanvas()
+//   2. Generate a QR code into #qr using QRCode.toCanvas()
 //
 // 📖 Docs: https://browserpod.io/docs/guides/setup-portal
 //
