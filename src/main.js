@@ -67,10 +67,10 @@ const urlDiv = document.getElementById("url");
 
 pod.onPortal(({ url, port }) => {
     // 1. Update the URL display
-    urlDiv.innerHTML = '' // ← fix this
+    urlDiv.innerHTML = `<a href="${url}" target="_blank">${url}</a>`
 
     // 2. Load the URL in the iframe
-    portalIframe.src = '' // ← fix this
+    portalIframe.src = url
 
     // 3. Generate QR code
     const qrContainer = document.getElementById("qr");
@@ -91,7 +91,7 @@ pod.onPortal(({ url, port }) => {
     if (qrLabel) qrLabel.textContent = "Scan to play on your phone";
 
     const qrUrl = document.getElementById("qr-url");
-    if (qrUrl) qrUrl.textContent = '' // ← fix this
+    if (qrUrl) qrUrl.textContent = url
 
     markStepComplete(3)
 })
